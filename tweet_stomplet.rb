@@ -10,13 +10,12 @@ class TweetStomplet < TorqueBox::Stomp::JmsStomplet
 
   def on_subscribe(subscriber)
     subscribe_to( subscriber, @topic )
-    send_to( @topic,
-             {
-               :message => "Someone joined",
-               :sender => 'the_boss',
-               :timestamp => Time.now.ctime,
-               :type => :notice
-             }.to_json )
+  end
+
+  def on_message(message, headers)
+    puts "Message Received!\n"*5
+    puts message.getContentAsString
+    return message.getContentAsString
   end
 
 end

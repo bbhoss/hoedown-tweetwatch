@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <title>ROG CONNECT</title>
+    <link rel="stylesheet" href="leaflet.css" />
+    <!--[if lte IE 8]><link rel="stylesheet" href="leaflet.ie.css" /><![endif]-->
+    <script type="text/javascript" src="/jquery.min.js"></script>
+    <script type="text/javascript" src="/stilts-stomp.js"></script>
+    <script src="leaflet.js"></script>
+    <script src="wax.leaf.js"></script>
+  </head>
+  <body>
+    <div id="mapbox" style="width: 1000px; height: 650px"></div>
+    <script type="text/javascript">
+    
+    // Define the map to use from MapBox
+    var url = 'http://api.tiles.mapbox.com/v3/mapbox.mapbox-streets.jsonp';
+
+    // Get metadata about the map from MapBox
+    var map;
+
+    // Make a new Leaflet map in your container div
+    map = new L.Map('mapbox')  // container's id="mapbox"
+      
+    // Center the map on Washington, DC, at zoom 15
+    .setView(new L.LatLng(39.052252,-95.684738), 4)
+
+    wax.tilejson(url,function(tilejson) {
+        // Add MapBox Streets as a base layer
+        map.addLayer(new wax.leaf.connector(tilejson));
+    });
+
+    </script>
+    <script type="text/javascript" src="/ws.js"></script>
+  </body>
+</html>

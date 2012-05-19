@@ -11,7 +11,7 @@ class TweetWatch < Sinatra::Base
 
   
   get '/' do
-    haml :index
+    erb :index
   end
 
 end
